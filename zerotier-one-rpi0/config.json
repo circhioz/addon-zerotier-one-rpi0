@@ -1,7 +1,7 @@
 {
   "name": "ZeroTier One for RPi0",
   "version": "1.0",
-  "slug": "zerotier-one-rpi",
+  "slug": "zerotier-one-rpi0",
   "url": "https://github.com/circhioz/addon-zerotier-one-rpi",
   "description": "Zerotier is an open source, cross-platform and easy to use virtual LAN / Hamachi alternative",
   "startup": "services",
@@ -32,5 +32,5 @@
     "auth_token": "match([0-9A-Za-z]+)",
     "log_level": "match(^(trace|debug|info|notice|warning|error|fatal)$)"
   },
-  "image": "circhioz/addon-zerotier-one-armhf"
+  "image": "circhioz/addon-zerotier-one-rpi0"
 }
