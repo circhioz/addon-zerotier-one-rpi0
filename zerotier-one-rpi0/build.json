@@ -1,7 +1,7 @@
 {
     "squash": false,
     "build_from": {
-        "armhf": "hassioaddons/debian-base-armhf:2.3.0"
+        "armhf": "hassioaddons/base-armhf:2.3.0"
     },
     "args": {
         "ZT_VER":"1.2.12"
