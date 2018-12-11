@@ -1,0 +1,11 @@
+#!/usr/bin/with-contenv bash
+# ==============================================================================
+# Francesco's Hass.io Add-ons: ZeroTier One
+# Take down the S6 supervision tree when ZeroTier One fails
+# ==============================================================================
+
+source /usr/lib/hassio-addons/base.sh
+
+port=$(hass.config.get 'port')
+
+exec zerotier-one -U -p${port}
