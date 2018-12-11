@@ -1,7 +1,7 @@
 {
     "squash": false,
     "build_from": {
-        "armhf": "hassioaddons/base-armhf:2.3.0"
+        "armhf": "hassioaddons/ubuntu-base-armhf:2.2.0"
     },
     "args": {
         "ZT_VER":"1.2.12"

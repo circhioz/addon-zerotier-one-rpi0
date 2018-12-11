@@ -1,22 +1,34 @@
-ARG BUILD_FROM=hassioaddons/base:2.3.0
+ARG BUILD_FROM=hassioaddons/ubuntu-base:2.2.0
 FROM ${BUILD_FROM}
+
+# Set shell
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 # Build arugments
 ARG BUILD_DATE
 ARG BUILD_REF
 ARG BUILD_VERSION
-ARG BUILD_ARCH
+ARG BUILD_ARCH=amd64
 ARG ZT_VER
 
 # Install ZeroTier One
-RUN apt-get update -yqq \
-  && apt-get install kmod iproute -y \
-  && curl https://download.zerotier.com/debian/stretch/pool/main/z/zerotier-one/zerotier-one_${ZT_VER}_${BUILD_ARCH}.deb -o /tmp/zerotier-one.deb \
+RUN \
+  apt-get update \
+  && apt-get install -y --no-install-recommends \
+    kmod \
+    iproute2 \
+  \
+  && curl \
+    https://download.zerotier.com/debian/stretch/pool/main/z/zerotier-one/zerotier-one_${ZT_VER}_${BUILD_ARCH}.deb \
+    -o /tmp/zerotier-one.deb \
+  \
   && dpkg-deb -x /tmp/zerotier-one.deb /tmp/zerotier-one \
   && cp /tmp/zerotier-one/usr/sbin/zerotier-one /usr/bin \
   && ln -s /usr/bin/zerotier-one /usr/bin/zerotier-cli \
+  \
   && addgroup --system --gid 1000 zerotier-one \
   && adduser --system --ingroup zerotier-one --home /var/lib/zerotier-one --no-create-home --uid 1000 zerotier-one \
+  \
   && rm -rf /tmp/*
 
 # Copy root filesystem
